@@ -1,0 +1,38 @@
+{
+  "serverInfo": {"name": "billing-api", "version": "1.0.0"},
+  "tools": [
+    {
+      "name": "create_invoice",
+      "description": "Please note that this tool is a tool that allows you to create a new invoice for a customer. Be sure to use this tool when you need to create an invoice for a customer in the billing system. This create operation on an invoice for a customer returns the resulting invoice. Use this tool when you want to create an invoice, simply just by passing the customer identifier and the amount. Note that this tool will create the invoice for the customer appropriately, properly, and correctly. It handles various invoice things for the customer and returns relevant stuff about the invoice.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {"type": "string"},
+          "amount":      {"type": "integer"}
+        },
+        "required": ["customer_id", "amount"]
+      }
+    },
+    {
+      "name": "get_invoice",
+      "description": "Please note that this tool is a tool that allows you to fetch a single invoice for a customer. Be sure to use this tool when you need to fetch an invoice for a customer from the billing system. This fetch operation on an invoice for a customer returns the resulting invoice. Use this tool when you want to fetch an invoice, simply just by passing the invoice identifier. Note that this tool will fetch the invoice for the customer appropriately, properly, and correctly. It handles various invoice things for the customer and returns relevant stuff about the invoice.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {"id": {"type": "string"}},
+        "required": ["id"]
+      }
+    },
+    {
+      "name": "list_invoices",
+      "description": "Please note that this tool is a tool that allows you to list invoices for a customer with cursor pagination. Be sure to use this tool when you need to list invoices for a customer in the billing system. This list operation on invoices for a customer returns a page of resulting invoices. Use this tool when you want to list invoices, simply just by passing the customer identifier and an optional cursor. Note that this tool will list the invoices for the customer appropriately, properly, and correctly. It handles various invoice things for the customer and returns relevant stuff about the invoices.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {"type": "string"},
+          "cursor":      {"type": "string"}
+        },
+        "required": ["customer_id"]
+      }
+    }
+  ]
+}

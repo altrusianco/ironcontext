@@ -13,6 +13,8 @@
 
 # IronContext
 
+![IronContext Demo](docs/assets/demo.gif)
+
 > **The Snyk for AI Agents.** A high-performance, Rust-core security & optimization engine for the Model Context Protocol (MCP).
 >
 > Built by [Altrusian Computer](https://altrusian.com).
