@@ -1,0 +1,40 @@
+[package]
+name = "ironcontext-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "Security & optimization engine for the Model Context Protocol (MCP)."
+homepage = "https://github.com/altrusianco/ironcontext"
+documentation = "https://docs.rs/ironcontext-core"
+readme = "README.md"
+keywords = ["mcp", "security", "llm", "agents", "sarif"]
+categories = ["development-tools", "command-line-utilities", "parser-implementations"]
+
+# Trim the published tarball: benches reference an out-of-crate fixture and
+# add no value to library consumers. Anything not explicitly listed below is
+# *included* by default (Cargo's package.exclude is a deny-list).
+exclude = [
+    "benches/**",
+    "tests/**",
+    "*.bak",
+]
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+regex = { workspace = true }
+thiserror = { workspace = true }
+unicode-normalization = { workspace = true }
+
+[dev-dependencies]
+criterion = { workspace = true }
+
+[[bench]]
+name = "scan_latency"
+harness = false

@@ -1,0 +1,1508 @@
+{
+  "serverInfo": {
+    "name": "bloated-server",
+    "version": "1.0.0"
+  },
+  "tools": [
+    {
+      "name": "list_invoice",
+      "description": "Please note that this tool is a tool that allows you to list a invoice. Be sure to use this tool when you need to list a invoice in the system. This list operation on a invoice returns the resulting invoice. Use this tool when you want to list a invoice, simply just by passing the id. Note that this tool will list the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_user",
+      "description": "Please note that this tool is a tool that allows you to list a user. Be sure to use this tool when you need to list a user in the system. This list operation on a user returns the resulting user. Use this tool when you want to list a user, simply just by passing the id. Note that this tool will list the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_team",
+      "description": "Please note that this tool is a tool that allows you to list a team. Be sure to use this tool when you need to list a team in the system. This list operation on a team returns the resulting team. Use this tool when you want to list a team, simply just by passing the id. Note that this tool will list the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_project",
+      "description": "Please note that this tool is a tool that allows you to list a project. Be sure to use this tool when you need to list a project in the system. This list operation on a project returns the resulting project. Use this tool when you want to list a project, simply just by passing the id. Note that this tool will list the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_task",
+      "description": "Please note that this tool is a tool that allows you to list a task. Be sure to use this tool when you need to list a task in the system. This list operation on a task returns the resulting task. Use this tool when you want to list a task, simply just by passing the id. Note that this tool will list the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_comment",
+      "description": "Please note that this tool is a tool that allows you to list a comment. Be sure to use this tool when you need to list a comment in the system. This list operation on a comment returns the resulting comment. Use this tool when you want to list a comment, simply just by passing the id. Note that this tool will list the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_label",
+      "description": "Please note that this tool is a tool that allows you to list a label. Be sure to use this tool when you need to list a label in the system. This list operation on a label returns the resulting label. Use this tool when you want to list a label, simply just by passing the id. Note that this tool will list the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_release",
+      "description": "Please note that this tool is a tool that allows you to list a release. Be sure to use this tool when you need to list a release in the system. This list operation on a release returns the resulting release. Use this tool when you want to list a release, simply just by passing the id. Note that this tool will list the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_tag",
+      "description": "Please note that this tool is a tool that allows you to list a tag. Be sure to use this tool when you need to list a tag in the system. This list operation on a tag returns the resulting tag. Use this tool when you want to list a tag, simply just by passing the id. Note that this tool will list the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "list_metric",
+      "description": "Please note that this tool is a tool that allows you to list a metric. Be sure to use this tool when you need to list a metric in the system. This list operation on a metric returns the resulting metric. Use this tool when you want to list a metric, simply just by passing the id. Note that this tool will list the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_invoice",
+      "description": "Please note that this tool is a tool that allows you to get a invoice. Be sure to use this tool when you need to get a invoice in the system. This get operation on a invoice returns the resulting invoice. Use this tool when you want to get a invoice, simply just by passing the id. Note that this tool will get the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_user",
+      "description": "Please note that this tool is a tool that allows you to get a user. Be sure to use this tool when you need to get a user in the system. This get operation on a user returns the resulting user. Use this tool when you want to get a user, simply just by passing the id. Note that this tool will get the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_team",
+      "description": "Please note that this tool is a tool that allows you to get a team. Be sure to use this tool when you need to get a team in the system. This get operation on a team returns the resulting team. Use this tool when you want to get a team, simply just by passing the id. Note that this tool will get the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_project",
+      "description": "Please note that this tool is a tool that allows you to get a project. Be sure to use this tool when you need to get a project in the system. This get operation on a project returns the resulting project. Use this tool when you want to get a project, simply just by passing the id. Note that this tool will get the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_task",
+      "description": "Please note that this tool is a tool that allows you to get a task. Be sure to use this tool when you need to get a task in the system. This get operation on a task returns the resulting task. Use this tool when you want to get a task, simply just by passing the id. Note that this tool will get the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_comment",
+      "description": "Please note that this tool is a tool that allows you to get a comment. Be sure to use this tool when you need to get a comment in the system. This get operation on a comment returns the resulting comment. Use this tool when you want to get a comment, simply just by passing the id. Note that this tool will get the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_label",
+      "description": "Please note that this tool is a tool that allows you to get a label. Be sure to use this tool when you need to get a label in the system. This get operation on a label returns the resulting label. Use this tool when you want to get a label, simply just by passing the id. Note that this tool will get the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_release",
+      "description": "Please note that this tool is a tool that allows you to get a release. Be sure to use this tool when you need to get a release in the system. This get operation on a release returns the resulting release. Use this tool when you want to get a release, simply just by passing the id. Note that this tool will get the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_tag",
+      "description": "Please note that this tool is a tool that allows you to get a tag. Be sure to use this tool when you need to get a tag in the system. This get operation on a tag returns the resulting tag. Use this tool when you want to get a tag, simply just by passing the id. Note that this tool will get the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "get_metric",
+      "description": "Please note that this tool is a tool that allows you to get a metric. Be sure to use this tool when you need to get a metric in the system. This get operation on a metric returns the resulting metric. Use this tool when you want to get a metric, simply just by passing the id. Note that this tool will get the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_invoice",
+      "description": "Please note that this tool is a tool that allows you to create a invoice. Be sure to use this tool when you need to create a invoice in the system. This create operation on a invoice returns the resulting invoice. Use this tool when you want to create a invoice, simply just by passing the id. Note that this tool will create the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_user",
+      "description": "Please note that this tool is a tool that allows you to create a user. Be sure to use this tool when you need to create a user in the system. This create operation on a user returns the resulting user. Use this tool when you want to create a user, simply just by passing the id. Note that this tool will create the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_team",
+      "description": "Please note that this tool is a tool that allows you to create a team. Be sure to use this tool when you need to create a team in the system. This create operation on a team returns the resulting team. Use this tool when you want to create a team, simply just by passing the id. Note that this tool will create the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_project",
+      "description": "Please note that this tool is a tool that allows you to create a project. Be sure to use this tool when you need to create a project in the system. This create operation on a project returns the resulting project. Use this tool when you want to create a project, simply just by passing the id. Note that this tool will create the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_task",
+      "description": "Please note that this tool is a tool that allows you to create a task. Be sure to use this tool when you need to create a task in the system. This create operation on a task returns the resulting task. Use this tool when you want to create a task, simply just by passing the id. Note that this tool will create the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_comment",
+      "description": "Please note that this tool is a tool that allows you to create a comment. Be sure to use this tool when you need to create a comment in the system. This create operation on a comment returns the resulting comment. Use this tool when you want to create a comment, simply just by passing the id. Note that this tool will create the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_label",
+      "description": "Please note that this tool is a tool that allows you to create a label. Be sure to use this tool when you need to create a label in the system. This create operation on a label returns the resulting label. Use this tool when you want to create a label, simply just by passing the id. Note that this tool will create the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_release",
+      "description": "Please note that this tool is a tool that allows you to create a release. Be sure to use this tool when you need to create a release in the system. This create operation on a release returns the resulting release. Use this tool when you want to create a release, simply just by passing the id. Note that this tool will create the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_tag",
+      "description": "Please note that this tool is a tool that allows you to create a tag. Be sure to use this tool when you need to create a tag in the system. This create operation on a tag returns the resulting tag. Use this tool when you want to create a tag, simply just by passing the id. Note that this tool will create the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "create_metric",
+      "description": "Please note that this tool is a tool that allows you to create a metric. Be sure to use this tool when you need to create a metric in the system. This create operation on a metric returns the resulting metric. Use this tool when you want to create a metric, simply just by passing the id. Note that this tool will create the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_invoice",
+      "description": "Please note that this tool is a tool that allows you to update a invoice. Be sure to use this tool when you need to update a invoice in the system. This update operation on a invoice returns the resulting invoice. Use this tool when you want to update a invoice, simply just by passing the id. Note that this tool will update the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_user",
+      "description": "Please note that this tool is a tool that allows you to update a user. Be sure to use this tool when you need to update a user in the system. This update operation on a user returns the resulting user. Use this tool when you want to update a user, simply just by passing the id. Note that this tool will update the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_team",
+      "description": "Please note that this tool is a tool that allows you to update a team. Be sure to use this tool when you need to update a team in the system. This update operation on a team returns the resulting team. Use this tool when you want to update a team, simply just by passing the id. Note that this tool will update the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_project",
+      "description": "Please note that this tool is a tool that allows you to update a project. Be sure to use this tool when you need to update a project in the system. This update operation on a project returns the resulting project. Use this tool when you want to update a project, simply just by passing the id. Note that this tool will update the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_task",
+      "description": "Please note that this tool is a tool that allows you to update a task. Be sure to use this tool when you need to update a task in the system. This update operation on a task returns the resulting task. Use this tool when you want to update a task, simply just by passing the id. Note that this tool will update the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_comment",
+      "description": "Please note that this tool is a tool that allows you to update a comment. Be sure to use this tool when you need to update a comment in the system. This update operation on a comment returns the resulting comment. Use this tool when you want to update a comment, simply just by passing the id. Note that this tool will update the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_label",
+      "description": "Please note that this tool is a tool that allows you to update a label. Be sure to use this tool when you need to update a label in the system. This update operation on a label returns the resulting label. Use this tool when you want to update a label, simply just by passing the id. Note that this tool will update the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_release",
+      "description": "Please note that this tool is a tool that allows you to update a release. Be sure to use this tool when you need to update a release in the system. This update operation on a release returns the resulting release. Use this tool when you want to update a release, simply just by passing the id. Note that this tool will update the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_tag",
+      "description": "Please note that this tool is a tool that allows you to update a tag. Be sure to use this tool when you need to update a tag in the system. This update operation on a tag returns the resulting tag. Use this tool when you want to update a tag, simply just by passing the id. Note that this tool will update the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "update_metric",
+      "description": "Please note that this tool is a tool that allows you to update a metric. Be sure to use this tool when you need to update a metric in the system. This update operation on a metric returns the resulting metric. Use this tool when you want to update a metric, simply just by passing the id. Note that this tool will update the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_invoice",
+      "description": "Please note that this tool is a tool that allows you to delete a invoice. Be sure to use this tool when you need to delete a invoice in the system. This delete operation on a invoice returns the resulting invoice. Use this tool when you want to delete a invoice, simply just by passing the id. Note that this tool will delete the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_user",
+      "description": "Please note that this tool is a tool that allows you to delete a user. Be sure to use this tool when you need to delete a user in the system. This delete operation on a user returns the resulting user. Use this tool when you want to delete a user, simply just by passing the id. Note that this tool will delete the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_team",
+      "description": "Please note that this tool is a tool that allows you to delete a team. Be sure to use this tool when you need to delete a team in the system. This delete operation on a team returns the resulting team. Use this tool when you want to delete a team, simply just by passing the id. Note that this tool will delete the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_project",
+      "description": "Please note that this tool is a tool that allows you to delete a project. Be sure to use this tool when you need to delete a project in the system. This delete operation on a project returns the resulting project. Use this tool when you want to delete a project, simply just by passing the id. Note that this tool will delete the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_task",
+      "description": "Please note that this tool is a tool that allows you to delete a task. Be sure to use this tool when you need to delete a task in the system. This delete operation on a task returns the resulting task. Use this tool when you want to delete a task, simply just by passing the id. Note that this tool will delete the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_comment",
+      "description": "Please note that this tool is a tool that allows you to delete a comment. Be sure to use this tool when you need to delete a comment in the system. This delete operation on a comment returns the resulting comment. Use this tool when you want to delete a comment, simply just by passing the id. Note that this tool will delete the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_label",
+      "description": "Please note that this tool is a tool that allows you to delete a label. Be sure to use this tool when you need to delete a label in the system. This delete operation on a label returns the resulting label. Use this tool when you want to delete a label, simply just by passing the id. Note that this tool will delete the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_release",
+      "description": "Please note that this tool is a tool that allows you to delete a release. Be sure to use this tool when you need to delete a release in the system. This delete operation on a release returns the resulting release. Use this tool when you want to delete a release, simply just by passing the id. Note that this tool will delete the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_tag",
+      "description": "Please note that this tool is a tool that allows you to delete a tag. Be sure to use this tool when you need to delete a tag in the system. This delete operation on a tag returns the resulting tag. Use this tool when you want to delete a tag, simply just by passing the id. Note that this tool will delete the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "delete_metric",
+      "description": "Please note that this tool is a tool that allows you to delete a metric. Be sure to use this tool when you need to delete a metric in the system. This delete operation on a metric returns the resulting metric. Use this tool when you want to delete a metric, simply just by passing the id. Note that this tool will delete the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_invoice",
+      "description": "Please note that this tool is a tool that allows you to search a invoice. Be sure to use this tool when you need to search a invoice in the system. This search operation on a invoice returns the resulting invoice. Use this tool when you want to search a invoice, simply just by passing the id. Note that this tool will search the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_user",
+      "description": "Please note that this tool is a tool that allows you to search a user. Be sure to use this tool when you need to search a user in the system. This search operation on a user returns the resulting user. Use this tool when you want to search a user, simply just by passing the id. Note that this tool will search the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_team",
+      "description": "Please note that this tool is a tool that allows you to search a team. Be sure to use this tool when you need to search a team in the system. This search operation on a team returns the resulting team. Use this tool when you want to search a team, simply just by passing the id. Note that this tool will search the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_project",
+      "description": "Please note that this tool is a tool that allows you to search a project. Be sure to use this tool when you need to search a project in the system. This search operation on a project returns the resulting project. Use this tool when you want to search a project, simply just by passing the id. Note that this tool will search the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_task",
+      "description": "Please note that this tool is a tool that allows you to search a task. Be sure to use this tool when you need to search a task in the system. This search operation on a task returns the resulting task. Use this tool when you want to search a task, simply just by passing the id. Note that this tool will search the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_comment",
+      "description": "Please note that this tool is a tool that allows you to search a comment. Be sure to use this tool when you need to search a comment in the system. This search operation on a comment returns the resulting comment. Use this tool when you want to search a comment, simply just by passing the id. Note that this tool will search the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_label",
+      "description": "Please note that this tool is a tool that allows you to search a label. Be sure to use this tool when you need to search a label in the system. This search operation on a label returns the resulting label. Use this tool when you want to search a label, simply just by passing the id. Note that this tool will search the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_release",
+      "description": "Please note that this tool is a tool that allows you to search a release. Be sure to use this tool when you need to search a release in the system. This search operation on a release returns the resulting release. Use this tool when you want to search a release, simply just by passing the id. Note that this tool will search the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_tag",
+      "description": "Please note that this tool is a tool that allows you to search a tag. Be sure to use this tool when you need to search a tag in the system. This search operation on a tag returns the resulting tag. Use this tool when you want to search a tag, simply just by passing the id. Note that this tool will search the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "search_metric",
+      "description": "Please note that this tool is a tool that allows you to search a metric. Be sure to use this tool when you need to search a metric in the system. This search operation on a metric returns the resulting metric. Use this tool when you want to search a metric, simply just by passing the id. Note that this tool will search the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_invoice",
+      "description": "Please note that this tool is a tool that allows you to find a invoice. Be sure to use this tool when you need to find a invoice in the system. This find operation on a invoice returns the resulting invoice. Use this tool when you want to find a invoice, simply just by passing the id. Note that this tool will find the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_user",
+      "description": "Please note that this tool is a tool that allows you to find a user. Be sure to use this tool when you need to find a user in the system. This find operation on a user returns the resulting user. Use this tool when you want to find a user, simply just by passing the id. Note that this tool will find the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_team",
+      "description": "Please note that this tool is a tool that allows you to find a team. Be sure to use this tool when you need to find a team in the system. This find operation on a team returns the resulting team. Use this tool when you want to find a team, simply just by passing the id. Note that this tool will find the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_project",
+      "description": "Please note that this tool is a tool that allows you to find a project. Be sure to use this tool when you need to find a project in the system. This find operation on a project returns the resulting project. Use this tool when you want to find a project, simply just by passing the id. Note that this tool will find the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_task",
+      "description": "Please note that this tool is a tool that allows you to find a task. Be sure to use this tool when you need to find a task in the system. This find operation on a task returns the resulting task. Use this tool when you want to find a task, simply just by passing the id. Note that this tool will find the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_comment",
+      "description": "Please note that this tool is a tool that allows you to find a comment. Be sure to use this tool when you need to find a comment in the system. This find operation on a comment returns the resulting comment. Use this tool when you want to find a comment, simply just by passing the id. Note that this tool will find the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_label",
+      "description": "Please note that this tool is a tool that allows you to find a label. Be sure to use this tool when you need to find a label in the system. This find operation on a label returns the resulting label. Use this tool when you want to find a label, simply just by passing the id. Note that this tool will find the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_release",
+      "description": "Please note that this tool is a tool that allows you to find a release. Be sure to use this tool when you need to find a release in the system. This find operation on a release returns the resulting release. Use this tool when you want to find a release, simply just by passing the id. Note that this tool will find the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_tag",
+      "description": "Please note that this tool is a tool that allows you to find a tag. Be sure to use this tool when you need to find a tag in the system. This find operation on a tag returns the resulting tag. Use this tool when you want to find a tag, simply just by passing the id. Note that this tool will find the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "find_metric",
+      "description": "Please note that this tool is a tool that allows you to find a metric. Be sure to use this tool when you need to find a metric in the system. This find operation on a metric returns the resulting metric. Use this tool when you want to find a metric, simply just by passing the id. Note that this tool will find the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_invoice",
+      "description": "Please note that this tool is a tool that allows you to fetch a invoice. Be sure to use this tool when you need to fetch a invoice in the system. This fetch operation on a invoice returns the resulting invoice. Use this tool when you want to fetch a invoice, simply just by passing the id. Note that this tool will fetch the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_user",
+      "description": "Please note that this tool is a tool that allows you to fetch a user. Be sure to use this tool when you need to fetch a user in the system. This fetch operation on a user returns the resulting user. Use this tool when you want to fetch a user, simply just by passing the id. Note that this tool will fetch the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_team",
+      "description": "Please note that this tool is a tool that allows you to fetch a team. Be sure to use this tool when you need to fetch a team in the system. This fetch operation on a team returns the resulting team. Use this tool when you want to fetch a team, simply just by passing the id. Note that this tool will fetch the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_project",
+      "description": "Please note that this tool is a tool that allows you to fetch a project. Be sure to use this tool when you need to fetch a project in the system. This fetch operation on a project returns the resulting project. Use this tool when you want to fetch a project, simply just by passing the id. Note that this tool will fetch the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_task",
+      "description": "Please note that this tool is a tool that allows you to fetch a task. Be sure to use this tool when you need to fetch a task in the system. This fetch operation on a task returns the resulting task. Use this tool when you want to fetch a task, simply just by passing the id. Note that this tool will fetch the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_comment",
+      "description": "Please note that this tool is a tool that allows you to fetch a comment. Be sure to use this tool when you need to fetch a comment in the system. This fetch operation on a comment returns the resulting comment. Use this tool when you want to fetch a comment, simply just by passing the id. Note that this tool will fetch the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_label",
+      "description": "Please note that this tool is a tool that allows you to fetch a label. Be sure to use this tool when you need to fetch a label in the system. This fetch operation on a label returns the resulting label. Use this tool when you want to fetch a label, simply just by passing the id. Note that this tool will fetch the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_release",
+      "description": "Please note that this tool is a tool that allows you to fetch a release. Be sure to use this tool when you need to fetch a release in the system. This fetch operation on a release returns the resulting release. Use this tool when you want to fetch a release, simply just by passing the id. Note that this tool will fetch the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_tag",
+      "description": "Please note that this tool is a tool that allows you to fetch a tag. Be sure to use this tool when you need to fetch a tag in the system. This fetch operation on a tag returns the resulting tag. Use this tool when you want to fetch a tag, simply just by passing the id. Note that this tool will fetch the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "fetch_metric",
+      "description": "Please note that this tool is a tool that allows you to fetch a metric. Be sure to use this tool when you need to fetch a metric in the system. This fetch operation on a metric returns the resulting metric. Use this tool when you want to fetch a metric, simply just by passing the id. Note that this tool will fetch the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_invoice",
+      "description": "Please note that this tool is a tool that allows you to read a invoice. Be sure to use this tool when you need to read a invoice in the system. This read operation on a invoice returns the resulting invoice. Use this tool when you want to read a invoice, simply just by passing the id. Note that this tool will read the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_user",
+      "description": "Please note that this tool is a tool that allows you to read a user. Be sure to use this tool when you need to read a user in the system. This read operation on a user returns the resulting user. Use this tool when you want to read a user, simply just by passing the id. Note that this tool will read the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_team",
+      "description": "Please note that this tool is a tool that allows you to read a team. Be sure to use this tool when you need to read a team in the system. This read operation on a team returns the resulting team. Use this tool when you want to read a team, simply just by passing the id. Note that this tool will read the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_project",
+      "description": "Please note that this tool is a tool that allows you to read a project. Be sure to use this tool when you need to read a project in the system. This read operation on a project returns the resulting project. Use this tool when you want to read a project, simply just by passing the id. Note that this tool will read the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_task",
+      "description": "Please note that this tool is a tool that allows you to read a task. Be sure to use this tool when you need to read a task in the system. This read operation on a task returns the resulting task. Use this tool when you want to read a task, simply just by passing the id. Note that this tool will read the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_comment",
+      "description": "Please note that this tool is a tool that allows you to read a comment. Be sure to use this tool when you need to read a comment in the system. This read operation on a comment returns the resulting comment. Use this tool when you want to read a comment, simply just by passing the id. Note that this tool will read the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_label",
+      "description": "Please note that this tool is a tool that allows you to read a label. Be sure to use this tool when you need to read a label in the system. This read operation on a label returns the resulting label. Use this tool when you want to read a label, simply just by passing the id. Note that this tool will read the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_release",
+      "description": "Please note that this tool is a tool that allows you to read a release. Be sure to use this tool when you need to read a release in the system. This read operation on a release returns the resulting release. Use this tool when you want to read a release, simply just by passing the id. Note that this tool will read the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_tag",
+      "description": "Please note that this tool is a tool that allows you to read a tag. Be sure to use this tool when you need to read a tag in the system. This read operation on a tag returns the resulting tag. Use this tool when you want to read a tag, simply just by passing the id. Note that this tool will read the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "read_metric",
+      "description": "Please note that this tool is a tool that allows you to read a metric. Be sure to use this tool when you need to read a metric in the system. This read operation on a metric returns the resulting metric. Use this tool when you want to read a metric, simply just by passing the id. Note that this tool will read the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_invoice",
+      "description": "Please note that this tool is a tool that allows you to summarize a invoice. Be sure to use this tool when you need to summarize a invoice in the system. This summarize operation on a invoice returns the resulting invoice. Use this tool when you want to summarize a invoice, simply just by passing the id. Note that this tool will summarize the invoice appropriately, properly, and correctly. It handles various invoice things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_user",
+      "description": "Please note that this tool is a tool that allows you to summarize a user. Be sure to use this tool when you need to summarize a user in the system. This summarize operation on a user returns the resulting user. Use this tool when you want to summarize a user, simply just by passing the id. Note that this tool will summarize the user appropriately, properly, and correctly. It handles various user things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_team",
+      "description": "Please note that this tool is a tool that allows you to summarize a team. Be sure to use this tool when you need to summarize a team in the system. This summarize operation on a team returns the resulting team. Use this tool when you want to summarize a team, simply just by passing the id. Note that this tool will summarize the team appropriately, properly, and correctly. It handles various team things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_project",
+      "description": "Please note that this tool is a tool that allows you to summarize a project. Be sure to use this tool when you need to summarize a project in the system. This summarize operation on a project returns the resulting project. Use this tool when you want to summarize a project, simply just by passing the id. Note that this tool will summarize the project appropriately, properly, and correctly. It handles various project things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_task",
+      "description": "Please note that this tool is a tool that allows you to summarize a task. Be sure to use this tool when you need to summarize a task in the system. This summarize operation on a task returns the resulting task. Use this tool when you want to summarize a task, simply just by passing the id. Note that this tool will summarize the task appropriately, properly, and correctly. It handles various task things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_comment",
+      "description": "Please note that this tool is a tool that allows you to summarize a comment. Be sure to use this tool when you need to summarize a comment in the system. This summarize operation on a comment returns the resulting comment. Use this tool when you want to summarize a comment, simply just by passing the id. Note that this tool will summarize the comment appropriately, properly, and correctly. It handles various comment things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_label",
+      "description": "Please note that this tool is a tool that allows you to summarize a label. Be sure to use this tool when you need to summarize a label in the system. This summarize operation on a label returns the resulting label. Use this tool when you want to summarize a label, simply just by passing the id. Note that this tool will summarize the label appropriately, properly, and correctly. It handles various label things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_release",
+      "description": "Please note that this tool is a tool that allows you to summarize a release. Be sure to use this tool when you need to summarize a release in the system. This summarize operation on a release returns the resulting release. Use this tool when you want to summarize a release, simply just by passing the id. Note that this tool will summarize the release appropriately, properly, and correctly. It handles various release things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_tag",
+      "description": "Please note that this tool is a tool that allows you to summarize a tag. Be sure to use this tool when you need to summarize a tag in the system. This summarize operation on a tag returns the resulting tag. Use this tool when you want to summarize a tag, simply just by passing the id. Note that this tool will summarize the tag appropriately, properly, and correctly. It handles various tag things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    },
+    {
+      "name": "summarize_metric",
+      "description": "Please note that this tool is a tool that allows you to summarize a metric. Be sure to use this tool when you need to summarize a metric in the system. This summarize operation on a metric returns the resulting metric. Use this tool when you want to summarize a metric, simply just by passing the id. Note that this tool will summarize the metric appropriately, properly, and correctly. It handles various metric things and returns relevant stuff.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    }
+  ]
+}

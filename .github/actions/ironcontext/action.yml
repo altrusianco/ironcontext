@@ -1,0 +1,110 @@
+name: "IronContext — MCP security scan"
+description: >
+  Scan an MCP manifest for the May 2026 CVE pattern pack, score it with the
+  Reasoning-Impact Score (RIS), and optionally upload SARIF to GitHub's Code
+  Scanning UI. Powered by the IronContext Rust engine.
+author: "Altrusian Computer"
+branding:
+  icon: "shield"
+  color: "purple"
+
+inputs:
+  manifest:
+    description: "Path to the MCP manifest JSON to scan."
+    required: true
+  output-sarif:
+    description: "Path to write a SARIF 2.1.0 report to. Empty disables SARIF output."
+    required: false
+    default: "ironcontext.sarif"
+  with-optimizer:
+    description: >
+      Also run the description optimizer pass and include token-reduction
+      figures in the report (slower; off by default in CI).
+    required: false
+    default: "false"
+  fail-on:
+    description: >
+      Severity floor that causes the step to fail. One of: never, medium, high,
+      critical. Defaults to "high" so medium-severity findings warn but don't block.
+    required: false
+    default: "high"
+  budget-ms:
+    description: "Latency budget for the bench step. Set to 0 to skip the bench gate."
+    required: false
+    default: "10"
+
+outputs:
+  findings-count:
+    description: "Total number of findings emitted by the scanner."
+    value: ${{ steps.scan.outputs.findings_count }}
+  mean-ris:
+    description: "Mean Reasoning-Impact Score across all tools in the manifest."
+    value: ${{ steps.scan.outputs.mean_ris }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Rust (stable, minimal)
+      shell: bash
+      run: |
+        if ! command -v cargo >/dev/null 2>&1; then
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+            | sh -s -- -y --default-toolchain stable --profile minimal
+          . "$HOME/.cargo/env"
+        fi
+        cargo --version
+
+    - name: Build IronContext (release)
+      shell: bash
+      working-directory: ${{ github.action_path }}/../../..
+      run: |
+        . "$HOME/.cargo/env" 2>/dev/null || true
+        cargo build --release -p ironcontext-cli
+
+    - name: Scan manifest
+      id: scan
+      shell: bash
+      working-directory: ${{ github.action_path }}/../../..
+      env:
+        CC_MANIFEST: ${{ inputs.manifest }}
+        CC_SARIF: ${{ inputs.output-sarif }}
+        CC_WITH_OPTIMIZER: ${{ inputs.with-optimizer }}
+        CC_FAIL_ON: ${{ inputs.fail-on }}
+      run: |
+        set -euo pipefail
+        EXTRA=()
+        if [ "$CC_WITH_OPTIMIZER" = "true" ]; then EXTRA+=("--with-optimizer"); fi
+        ./target/release/ironcontext scan "$CC_MANIFEST" --format json --no-fail "${EXTRA[@]}" > scan.json
+        if [ -n "$CC_SARIF" ]; then
+          ./target/release/ironcontext scan "$CC_MANIFEST" --format sarif --no-fail > "$CC_SARIF"
+        fi
+        FINDINGS=$(python3 -c "import json; d=json.load(open('scan.json')); print(len(d['findings']))")
+        MEAN_RIS=$(python3 -c "import json; d=json.load(open('scan.json')); print(d['summary']['mean_ris'])")
+        echo "findings_count=$FINDINGS" >> "$GITHUB_OUTPUT"
+        echo "mean_ris=$MEAN_RIS"       >> "$GITHUB_OUTPUT"
+        python3 - <<'PY'
+        import json, os, sys
+        d = json.load(open("scan.json"))
+        floor = os.environ.get("CC_FAIL_ON", "high").lower()
+        order = {"never": 999, "critical": 4, "high": 3, "medium": 2, "low": 1, "info": 0}
+        floor_lv = order.get(floor, 3)
+        worst = max((order.get(f["severity"], 0) for f in d["findings"]), default=0)
+        print(f"IronContext: {len(d['findings'])} finding(s); worst={worst} floor={floor_lv}")
+        if worst >= floor_lv and floor != "never":
+            sys.exit(1)
+        PY
+
+    - name: Latency budget (bench)
+      if: ${{ inputs.budget-ms != '0' }}
+      shell: bash
+      working-directory: ${{ github.action_path }}/../../..
+      run: |
+        ./target/release/ironcontext bench "${{ inputs.manifest }}" \
+          --iterations 300 --budget-ms ${{ inputs.budget-ms }}
+
+    - name: Upload SARIF
+      if: ${{ inputs.output-sarif != '' }}
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ inputs.output-sarif }}
+        category: ironcontext

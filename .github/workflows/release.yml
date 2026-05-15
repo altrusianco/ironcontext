@@ -1,0 +1,111 @@
+name: Release
+
+# Trigger: push a SemVer tag like v0.1.0.
+# Publishes the two Cargo crates to crates.io in dependency order, then the
+# Python wheel + sdist to PyPI.
+#
+# Required repo secrets / OIDC:
+#   * CARGO_REGISTRY_TOKEN  — crates.io API token with `publish-update` scope.
+#   * For PyPI we use **trusted publishing** (no token). Configure the
+#     `ironcontext` project on pypi.org with this workflow as a trusted
+#     publisher. If you prefer a token, add PYPI_API_TOKEN and uncomment the
+#     `password:` line in the publish step.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Pre-publish verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust (stable)
+        run: rustup default stable
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}
+      - name: Build release
+        run: cargo build --release --workspace
+      - name: Full make test (cargo + bench + optimizer + python + action)
+        run: make test
+      - name: Confirm tag matches workspace version
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME#v}"
+          WS_VER=$(awk -F\" '/^version = / {print $2; exit}' Cargo.toml)
+          if [ "$TAG" != "$WS_VER" ]; then
+            echo "::error::tag v$TAG does not match Cargo.toml version $WS_VER"
+            exit 1
+          fi
+
+  publish-crates:
+    name: Publish to crates.io
+    needs: verify
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust (stable)
+        run: rustup default stable
+      - name: Dry-run package (size check)
+        run: |
+          cargo package -p ironcontext-core --allow-dirty
+          cargo package -p ironcontext-cli  --allow-dirty
+          du -h target/package/*.crate
+      - name: Publish ironcontext-core
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        run: cargo publish -p ironcontext-core
+      - name: Wait for crates.io index update
+        run: |
+          # crates.io index lag is usually <60s; poll up to 5 min.
+          for i in $(seq 1 30); do
+            if cargo search ironcontext-core | grep -q "^ironcontext-core ="; then
+              echo "index updated."; exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::ironcontext-core never appeared on crates.io"
+          exit 1
+      - name: Publish ironcontext-cli
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        run: cargo publish -p ironcontext-cli
+
+  publish-pypi:
+    name: Publish to PyPI
+    needs: verify
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write   # required for PyPI trusted publishing (OIDC)
+      contents: read
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build sdist + wheel
+        run: |
+          python -m pip install --upgrade build
+          python -m build
+          ls -lh dist/
+      - name: Publish to PyPI (trusted publisher)
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: python/dist
+          # password: ${{ secrets.PYPI_API_TOKEN }}  # uncomment to use a token instead of OIDC

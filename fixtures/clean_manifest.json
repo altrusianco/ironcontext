@@ -1,0 +1,37 @@
+{
+  "serverInfo": {"name": "acme-billing", "version": "1.4.2"},
+  "tools": [
+    {
+      "name": "create_invoice",
+      "description": "Create a new invoice for a given customer and line items. Returns the invoice id.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {"type": "string"},
+          "lines": {"type": "array", "items": {"type": "object"}}
+        },
+        "required": ["customer_id", "lines"]
+      }
+    },
+    {
+      "name": "get_invoice",
+      "description": "Look up an invoice by id.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {"id": {"type": "string"}},
+        "required": ["id"]
+      }
+    },
+    {
+      "name": "list_invoices",
+      "description": "List invoices for a customer with optional pagination.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {"type": "string"},
+          "cursor": {"type": "string"}
+        }
+      }
+    }
+  ]
+}

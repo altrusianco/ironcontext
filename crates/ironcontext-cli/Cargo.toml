@@ -1,0 +1,31 @@
+[package]
+name = "ironcontext-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+description = "CLI for IronContext — security & optimization engine for the Model Context Protocol (MCP)."
+homepage = "https://github.com/altrusianco/ironcontext"
+readme = "README.md"
+keywords = ["mcp", "security", "llm", "agents", "cli"]
+categories = ["command-line-utilities", "development-tools"]
+
+exclude = [
+    "tests/**",
+    "*.bak",
+]
+
+[[bin]]
+name = "ironcontext"
+path = "src/main.rs"
+
+[dependencies]
+# Path lets the workspace build resolve locally; version is what crates.io
+# uses once both crates are published.
+ironcontext-core = { path = "../ironcontext-core", version = "0.1.0" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+clap = { workspace = true }
+anyhow = { workspace = true }

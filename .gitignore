@@ -1,0 +1,41 @@
+# Rust
+target/
+**/*.rs.bk
+*.pdb
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.tox/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# IronContext generated outputs (CI uploads these; we never commit them)
+ironcontext.sarif
+*.sarif
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local env
+.env
+.env.local
+.envrc
+
+# sed / awk leftovers from local rewrites
+*.bak
+*.orig
