@@ -1,0 +1,55 @@
+{
+  "name": "ironcontext",
+  "version": "0.1.0",
+  "description": "TypeScript wrapper around the IronContext Rust engine — security & optimization for the Model Context Protocol (MCP).",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist/index.js",
+    "dist/index.d.ts",
+    "dist/index.js.map",
+    "dist/index.d.ts.map",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "tsc -p tsconfig.test.json && node --test \"dist-test/tests/**/*.test.js\"",
+    "clean": "rm -rf dist dist-test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "security",
+    "llm",
+    "agents",
+    "sarif",
+    "ironcontext"
+  ],
+  "license": "Apache-2.0",
+  "author": "Altrusian Computer <security@altrusian.com>",
+  "homepage": "https://github.com/altrusianco/ironcontext",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altrusianco/ironcontext.git",
+    "directory": "typescript"
+  },
+  "bugs": {
+    "url": "https://github.com/altrusianco/ironcontext/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^20.14.0"
+  }
+}

@@ -6,6 +6,7 @@
   <a href="https://github.com/altrusianco/ironcontext/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/altrusianco/ironcontext/ci.yml?branch=master&label=CI" alt="CI"/></a>
   <a href="https://crates.io/crates/ironcontext-core"><img src="https://img.shields.io/crates/v/ironcontext-core.svg?label=ironcontext-core" alt="crates.io"/></a>
   <a href="https://pypi.org/project/ironcontext/"><img src="https://img.shields.io/pypi/v/ironcontext.svg?label=PyPI" alt="PyPI"/></a>
+  <a href="https://www.npmjs.com/package/ironcontext"><img src="https://img.shields.io/npm/v/ironcontext.svg?label=npm" alt="npm"/></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Apache-2.0"/></a>
   <img src="https://img.shields.io/badge/scan-%3C10ms-22d3ee" alt="<10ms scan"/>
   <img src="https://img.shields.io/badge/tokens-%2D83%25-10b981" alt="83% token reduction"/>
@@ -56,13 +57,21 @@ IronContext is the first tool to address all of it from a single high-performanc
 | Reasoning-Impact Score (RIS) — quantitative hallucination grade |  OK     |     no     |      no      |     no    |    no   |
 | Token-optimizing description pruner                         |      OK     |     no     |      no      |     no    |    no   |
 | Pluggable LLM optimizer (Claude/GPT)                        |      OK     |     no     |      no      |     no    |    no   |
-| Python wrapper + GitHub Action                              |      OK     |     OK     |      no      |     OK    |    OK   |
+| Python + TS wrappers + GitHub Action                        |      OK     |     OK     |      no      |     OK    |    OK   |
 | SARIF 2.1.0 output (GitHub Code Scanning)                   |      OK     |     no     |      no      |     OK    |    OK   |
 | Single static binary (no runtime deps)                      |      OK     |     no     |      no      |     no    |    no   |
 
 ## Installation
 
-### From source
+Pick the surface you like — they all call the same Rust binary underneath.
+
+```bash
+cargo install ironcontext-cli   # Rust: installs the `ironcontext` binary
+pip install ironcontext           # Python wrapper, zero runtime deps
+npm install ironcontext           # TypeScript / Node wrapper, zero runtime deps
+```
+
+Or build from source:
 
 ```bash
 git clone https://github.com/altrusianco/ironcontext
@@ -70,15 +79,9 @@ cd ironcontext
 make release          # builds target/release/ironcontext
 ```
 
-### Python wrapper (development install)
-
-```bash
-pip install ./python   # or: pip install ironcontext
-```
-
-The Python wrapper has **zero runtime dependencies**; it simply locates the
-binary (via `$IRONCONTEXT_BIN`, `./target/release/`, or `PATH`) and forwards
-arguments.
+The Python and TypeScript wrappers locate the binary in this order:
+`$IRONCONTEXT_BIN`, then `./target/release/ironcontext` (in-repo dev build),
+then `./target/debug/ironcontext`, then `$PATH`.
 
 ## CLI usage
 
@@ -116,7 +119,26 @@ if report.has_security_issues():
 print(f"Mean RIS: {report.mean_ris:.1f}/100")
 ```
 
-See [docs/API.md](docs/API.md) for the complete typed API.
+## TypeScript / Node usage
+
+```ts
+import { scan, hasSecurityIssues, ruleCode } from "ironcontext";
+
+const report = scan("manifest.json");
+if (hasSecurityIssues(report)) {
+  for (const f of report.findings) {
+    console.log(`[${f.severity}] ${ruleCode(f)} on ${f.tool} — ${f.message}`);
+  }
+}
+console.log(`Mean RIS: ${report.summary.mean_ris.toFixed(1)}/100`);
+```
+
+Strict TypeScript types are bundled — `ScanReport`, `Finding`, `RisScore`,
+`OptimizationResult`, etc. — and the package has **zero runtime dependencies**
+(uses Node's built-in `child_process.spawnSync`).
+
+See [docs/API.md](docs/API.md) for the complete typed API across all three
+wrappers.
 
 ## GitHub Action
 
@@ -214,6 +236,9 @@ The `DescriptionOptimizer` trait lets you plug in an LLM-backed rewriter
 │   └── ironcontext-cli/     # `ironcontext` binary
 ├── python/
 │   └── ironcontext/         # zero-dep Python wrapper
+├── typescript/
+│   ├── src/index.ts         # zero-dep TypeScript wrapper (spawnSync)
+│   └── tests/index.test.ts  # node:test integration suite
 ├── .github/
 │   ├── actions/ironcontext/ # composite GitHub Action
 │   └── workflows/ci.yml     # repo CI
@@ -221,24 +246,27 @@ The `DescriptionOptimizer` trait lets you plug in an LLM-backed rewriter
 ├── scripts/                 # fixture generators
 ├── docs/
 │   ├── API.md               # complete typed API reference
-│   └── RULES.md             # prose descriptions of each CC-NNN
-├── PLAN.md                  # master roadmap
-├── EXPERIMENTS.md           # R&D log
-├── SHIPPED.md               # verification checklist
+│   ├── RULES.md             # prose descriptions of each CC-NNN
+│   ├── PLAN.md              # master roadmap
+│   ├── EXPERIMENTS.md       # R&D log
+│   └── SHIPPED.md           # verification checklist
 └── Makefile                 # `make test` is the SOTA exit gate
 ```
 
 ## Verification
 
-`make test` is the single source of truth and exits 0 only when **all four
-SOTA conditions hold**:
+`make test` is the single source of truth and exits 0 only when **every gate
+holds**:
 
 ```
 make test
-# 1. cargo test --workspace                           — 30 tests passing
-# 2. ironcontext bench --budget-ms 10                  — scan median < 10ms
-# 3. ironcontext optimize --require-reduction-pct 40   — aggregate cut ≥ 40%
-# 4. python -m unittest discover -s python/tests       — 5 wrapper tests passing
+# 1. cargo test --workspace                          — 30 tests passing
+# 2. ironcontext bench --budget-ms 10                 — scan median < 10ms
+# 3. ironcontext optimize --require-reduction-pct 40
+#                       --require-similarity 0.95     — aggregate cut ≥ 40%, similarity ≥ 0.95
+# 4. python -m unittest discover -s python/tests      — 6 wrapper tests passing
+# 5. cd typescript && npm test                        — 10 wrapper tests passing (node --test)
+# 6. python scripts/mock_action_run.py                — GitHub Action SARIF flow verified
 ```
 
 ## License

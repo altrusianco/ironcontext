@@ -1,0 +1,7 @@
+src/
+tests/
+tsconfig*.json
+node_modules/
+dist-test/
+.eslintrc*
+.prettier*
