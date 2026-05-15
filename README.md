@@ -1,8 +1,21 @@
+<p align="center">
+  <img src="assets/hero.svg" alt="IronContext — the Snyk for AI Agents" width="100%"/>
+</p>
+
+<p align="center">
+  <a href="https://github.com/altrusianco/ironcontext/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/altrusianco/ironcontext/ci.yml?branch=master&label=CI" alt="CI"/></a>
+  <a href="https://crates.io/crates/ironcontext-core"><img src="https://img.shields.io/crates/v/ironcontext-core.svg?label=ironcontext-core" alt="crates.io"/></a>
+  <a href="https://pypi.org/project/ironcontext/"><img src="https://img.shields.io/pypi/v/ironcontext.svg?label=PyPI" alt="PyPI"/></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Apache-2.0"/></a>
+  <img src="https://img.shields.io/badge/scan-%3C10ms-22d3ee" alt="<10ms scan"/>
+  <img src="https://img.shields.io/badge/tokens-%2D83%25-10b981" alt="83% token reduction"/>
+</p>
+
 # IronContext
 
 > **The Snyk for AI Agents.** A high-performance, Rust-core security & optimization engine for the Model Context Protocol (MCP).
 >
-> Built by [Altrusian Computer](https://altrusian.computer).
+> Built by [Altrusian Computer](https://altrusian.com).
 
 IronContext inspects MCP tool manifests for the May 2026 prompt-injection / supply-chain CVE pattern pack, scores each tool with a quantitative **Reasoning-Impact Score (RIS)** that grades hallucination risk on a 0..100 scale, and prunes verbose tool descriptions to reclaim context-window tokens without losing meaning. The same engine runs from a CLI, a Python wrapper, or a one-line GitHub Action.
 

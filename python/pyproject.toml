@@ -9,7 +9,7 @@ description = "Python wrapper around the IronContext Rust engine — security & 
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "Apache-2.0"}
-authors = [{name = "Altrusian Computer", email = "security@altrusian.computer"}]
+authors = [{name = "Altrusian Computer", email = "security@altrusian.com"}]
 keywords = ["mcp", "model-context-protocol", "security", "llm", "agents"]
 classifiers = [
   "Development Status :: 4 - Beta",

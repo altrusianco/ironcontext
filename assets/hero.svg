@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-label="IronContext — the Snyk for AI Agents">
+  <title>IronContext by Altrusian Computer</title>
+
+  <!-- gradient + grid background -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="iron" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="360" fill="url(#bg)"/>
+  <rect width="1280" height="360" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- decorative accent ribbon -->
+  <rect x="0" y="0" width="1280" height="4" fill="url(#accent)"/>
+  <rect x="0" y="356" width="1280" height="4" fill="url(#accent)" opacity="0.6"/>
+
+  <!-- shield mark (left) -->
+  <g transform="translate(96, 110)">
+    <path d="M 70 0 L 140 22 V 86 C 140 122 110 148 70 168 C 30 148 0 122 0 86 V 22 Z"
+          fill="url(#iron)" stroke="#22d3ee" stroke-width="2"/>
+    <!-- inner accent stripes -->
+    <path d="M 30 56 H 110 M 30 84 H 110 M 30 112 H 110"
+          stroke="#0b1220" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- monogram I -->
+    <rect x="63" y="40" width="14" height="92" fill="#0b1220"/>
+    <rect x="44" y="40" width="52" height="10" fill="#0b1220"/>
+    <rect x="44" y="122" width="52" height="10" fill="#0b1220"/>
+  </g>
+
+  <!-- wordmark + tagline -->
+  <g transform="translate(296, 132)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" fill="#f8fafc">
+    <text x="0" y="0" font-size="68" font-weight="800" letter-spacing="2">IRONCONTEXT</text>
+    <text x="0" y="36" font-size="20" font-weight="500" fill="#94a3b8" letter-spacing="0.5">
+      by Altrusian Computer
+    </text>
+    <text x="0" y="84" font-size="28" font-weight="600" fill="#22d3ee" letter-spacing="0.2">
+      The Snyk for AI Agents.
+    </text>
+    <text x="0" y="118" font-size="17" font-weight="400" fill="#cbd5e1">
+      A Rust-core security &amp; optimization engine for the Model Context Protocol.
+    </text>
+  </g>
+
+  <!-- gate badges (bottom row) -->
+  <g transform="translate(296, 274)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <!-- helper: rect + label + value -->
+    <g>
+      <rect x="0" y="0" width="190" height="48" rx="8" fill="#0f172a" stroke="#22d3ee" stroke-width="1.5"/>
+      <text x="14" y="20" font-size="11" fill="#94a3b8" letter-spacing="1">SCAN LATENCY</text>
+      <text x="14" y="38" font-size="18" font-weight="700" fill="#22d3ee">2.9 ms median</text>
+    </g>
+    <g transform="translate(210, 0)">
+      <rect x="0" y="0" width="220" height="48" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+      <text x="14" y="20" font-size="11" fill="#94a3b8" letter-spacing="1">TOKEN REDUCTION</text>
+      <text x="14" y="38" font-size="18" font-weight="700" fill="#10b981">83% (sim 0.975)</text>
+    </g>
+    <g transform="translate(450, 0)">
+      <rect x="0" y="0" width="220" height="48" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="14" y="20" font-size="11" fill="#94a3b8" letter-spacing="1">CVE PATTERN PACK</text>
+      <text x="14" y="38" font-size="18" font-weight="700" fill="#f59e0b">CC-001 … CC-010</text>
+    </g>
+    <g transform="translate(690, 0)">
+      <rect x="0" y="0" width="190" height="48" rx="8" fill="#0f172a" stroke="#a78bfa" stroke-width="1.5"/>
+      <text x="14" y="20" font-size="11" fill="#94a3b8" letter-spacing="1">EXIT GATE</text>
+      <text x="14" y="38" font-size="18" font-weight="700" fill="#a78bfa">make test = 0</text>
+    </g>
+  </g>
+</svg>
