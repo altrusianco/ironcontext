@@ -4,12 +4,17 @@ name: Release
 # Publishes the two Cargo crates to crates.io in dependency order, then the
 # Python wheel + sdist to PyPI.
 #
+# Idempotent: if the version is already published on a given registry, that
+# registry's step skips cleanly. This lets you tag retroactively (e.g. for
+# v0.1.0, which was first published from a local workstation) without the
+# workflow failing.
+#
 # Required repo secrets / OIDC:
-#   * CARGO_REGISTRY_TOKEN  — crates.io API token with `publish-update` scope.
-#   * For PyPI we use **trusted publishing** (no token). Configure the
+#   * CARGO_REGISTRY_TOKEN  — crates.io API token with publish-update scope.
+#   * For PyPI we prefer **trusted publishing** (no token). Configure the
 #     `ironcontext` project on pypi.org with this workflow as a trusted
-#     publisher. If you prefer a token, add PYPI_API_TOKEN and uncomment the
-#     `password:` line in the publish step.
+#     publisher. If you prefer a token, add PYPI_API_TOKEN and uncomment
+#     the `password:` line in the publish step.
 
 on:
   push:
@@ -23,6 +28,11 @@ jobs:
   verify:
     name: Pre-publish verification
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.ver.outputs.version }}
+      core_published: ${{ steps.published.outputs.core }}
+      cli_published: ${{ steps.published.outputs.cli }}
+      pypi_published: ${{ steps.published.outputs.pypi }}
     steps:
       - uses: actions/checkout@v4
       - name: Install Rust (stable)
@@ -39,7 +49,8 @@ jobs:
         run: cargo build --release --workspace
       - name: Full make test (cargo + bench + optimizer + python + action)
         run: make test
-      - name: Confirm tag matches workspace version
+      - name: Resolve version + confirm tag matches workspace
+        id: ver
         run: |
           set -euo pipefail
           TAG="${GITHUB_REF_NAME#v}"
@@ -48,6 +59,35 @@ jobs:
             echo "::error::tag v$TAG does not match Cargo.toml version $WS_VER"
             exit 1
           fi
+          echo "version=$WS_VER" >> "$GITHUB_OUTPUT"
+      - name: Detect already-published versions (idempotency)
+        id: published
+        run: |
+          set -euo pipefail
+          VER="${{ steps.ver.outputs.version }}"
+          # crates.io serves a stable JSON endpoint per crate version.
+          check_crate() {
+            local crate="$1"
+            local code
+            code=$(curl -s -o /dev/null -w "%{http_code}" \
+              "https://crates.io/api/v1/crates/${crate}/${VER}")
+            [ "$code" = "200" ] && echo "true" || echo "false"
+          }
+          check_pypi() {
+            local code
+            code=$(curl -s -o /dev/null -w "%{http_code}" \
+              "https://pypi.org/pypi/ironcontext/${VER}/json")
+            [ "$code" = "200" ] && echo "true" || echo "false"
+          }
+          CORE=$(check_crate ironcontext-core)
+          CLI=$(check_crate ironcontext-cli)
+          PYPI=$(check_pypi)
+          echo "core=$CORE"   >> "$GITHUB_OUTPUT"
+          echo "cli=$CLI"     >> "$GITHUB_OUTPUT"
+          echo "pypi=$PYPI"   >> "$GITHUB_OUTPUT"
+          echo "ironcontext-core@$VER published: $CORE"
+          echo "ironcontext-cli@$VER  published: $CLI"
+          echo "ironcontext@$VER       on PyPI: $PYPI"
 
   publish-crates:
     name: Publish to crates.io
@@ -58,18 +98,28 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Rust (stable)
         run: rustup default stable
+
+      - name: Skip if both crates already published
+        if: ${{ needs.verify.outputs.core_published == 'true' && needs.verify.outputs.cli_published == 'true' }}
+        run: |
+          echo "::notice::both crates already at v${{ needs.verify.outputs.version }} on crates.io — nothing to do"
+
       - name: Dry-run package (size check)
+        if: ${{ needs.verify.outputs.core_published != 'true' || needs.verify.outputs.cli_published != 'true' }}
         run: |
           cargo package -p ironcontext-core --allow-dirty
-          cargo package -p ironcontext-cli  --allow-dirty
-          du -h target/package/*.crate
+          cargo package -p ironcontext-cli  --allow-dirty || true
+          du -h target/package/*.crate || true
+
       - name: Publish ironcontext-core
+        if: ${{ needs.verify.outputs.core_published != 'true' }}
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
         run: cargo publish -p ironcontext-core
+
       - name: Wait for crates.io index update
+        if: ${{ needs.verify.outputs.core_published != 'true' }}
         run: |
-          # crates.io index lag is usually <60s; poll up to 5 min.
           for i in $(seq 1 30); do
             if cargo search ironcontext-core | grep -q "^ironcontext-core ="; then
               echo "index updated."; exit 0
@@ -78,7 +128,9 @@ jobs:
           done
           echo "::error::ironcontext-core never appeared on crates.io"
           exit 1
+
       - name: Publish ironcontext-cli
+        if: ${{ needs.verify.outputs.cli_published != 'true' }}
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
         run: cargo publish -p ironcontext-cli
@@ -96,16 +148,50 @@ jobs:
         working-directory: python
     steps:
       - uses: actions/checkout@v4
+
+      - name: Skip if already published
+        if: ${{ needs.verify.outputs.pypi_published == 'true' }}
+        run: |
+          echo "::notice::ironcontext v${{ needs.verify.outputs.version }} already on PyPI — nothing to do"
+
       - uses: actions/setup-python@v5
+        if: ${{ needs.verify.outputs.pypi_published != 'true' }}
         with:
           python-version: "3.11"
+
       - name: Build sdist + wheel
+        if: ${{ needs.verify.outputs.pypi_published != 'true' }}
         run: |
           python -m pip install --upgrade build
           python -m build
           ls -lh dist/
+
       - name: Publish to PyPI (trusted publisher)
+        if: ${{ needs.verify.outputs.pypi_published != 'true' }}
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: python/dist
           # password: ${{ secrets.PYPI_API_TOKEN }}  # uncomment to use a token instead of OIDC
+
+  github-release:
+    name: Create GitHub Release
+    needs: [verify, publish-crates, publish-pypi]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create / update the GitHub Release for this tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          VER="${{ needs.verify.outputs.version }}"
+          TAG="v$VER"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "release $TAG already exists; leaving it alone."
+          else
+            gh release create "$TAG" \
+              --title "IronContext v$VER" \
+              --notes "$(printf 'IronContext v%s.\n\n* crates.io: https://crates.io/crates/ironcontext-core/%s and https://crates.io/crates/ironcontext-cli/%s\n* PyPI: https://pypi.org/project/ironcontext/%s/\n\nSee CHANGELOG / commit history for details.\n' "$VER" "$VER" "$VER" "$VER")"
+          fi
