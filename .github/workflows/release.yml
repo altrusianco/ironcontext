@@ -65,17 +65,21 @@ jobs:
         run: |
           set -euo pipefail
           VER="${{ steps.ver.outputs.version }}"
-          # crates.io serves a stable JSON endpoint per crate version.
+          # `cargo info <crate>@<version>` exits 0 only if the registry serves
+          # that exact version. This is more reliable than the HTTP API which
+          # caches inconsistently.
           check_crate() {
             local crate="$1"
-            local code
-            code=$(curl -s -o /dev/null -w "%{http_code}" \
-              "https://crates.io/api/v1/crates/${crate}/${VER}")
-            [ "$code" = "200" ] && echo "true" || echo "false"
+            if cargo info "${crate}@${VER}" >/dev/null 2>&1; then
+              echo "true"
+            else
+              echo "false"
+            fi
           }
           check_pypi() {
             local code
-            code=$(curl -s -o /dev/null -w "%{http_code}" \
+            code=$(curl -sL -A "ironcontext-release/1" \
+              -o /dev/null -w "%{http_code}" \
               "https://pypi.org/pypi/ironcontext/${VER}/json")
             [ "$code" = "200" ] && echo "true" || echo "false"
           }
@@ -115,7 +119,16 @@ jobs:
         if: ${{ needs.verify.outputs.core_published != 'true' }}
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
-        run: cargo publish -p ironcontext-core
+        run: |
+          set -o pipefail
+          if cargo publish -p ironcontext-core 2>&1 | tee /tmp/core.log; then
+            exit 0
+          fi
+          if grep -q "already exists on crates.io" /tmp/core.log; then
+            echo "::notice::ironcontext-core@${{ needs.verify.outputs.version }} already on crates.io — treating as success"
+            exit 0
+          fi
+          exit 1
 
       - name: Wait for crates.io index update
         if: ${{ needs.verify.outputs.core_published != 'true' }}
@@ -133,7 +146,16 @@ jobs:
         if: ${{ needs.verify.outputs.cli_published != 'true' }}
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
-        run: cargo publish -p ironcontext-cli
+        run: |
+          set -o pipefail
+          if cargo publish -p ironcontext-cli 2>&1 | tee /tmp/cli.log; then
+            exit 0
+          fi
+          if grep -q "already exists on crates.io" /tmp/cli.log; then
+            echo "::notice::ironcontext-cli@${{ needs.verify.outputs.version }} already on crates.io — treating as success"
+            exit 0
+          fi
+          exit 1
 
   publish-pypi:
     name: Publish to PyPI
