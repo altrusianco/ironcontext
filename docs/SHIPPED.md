@@ -32,7 +32,7 @@ Last verification: 2026-05-16 via `make test` → exit 0.
 - [x] README positions IronContext as the "Snyk for AI Agents."
 - [x] `docs/API.md` documents every public type / CLI flag / exit code.
 - [x] `docs/RULES.md` enumerates CC-001..010 with examples.
-- [x] VHS demo (`demo.tape` + `fixtures/demo/*`) renders the README GIF via `vhs demo.tape` → `docs/assets/demo.gif`. Three scenes: poisoned-server scan (CC-001 + CC-010), optimizer ≥40% reduction, latency bench.
+- [x] VHS demo finalized: `demo.tape` + `fixtures/demo/{poisoned,clean}_server.json` render `docs/assets/demo.gif` (298 KB, 1280×760, 31.5 s, Catppuccin Mocha). Verified frames at 8 s ([CRIT] CC-001 + CC-010), 18 s (52.0% reduction, similarity 0.98), 29 s (`scan median: 3.0 ms`).
 
 ## Exit gate
 - [x] `make test` exits 0 (cargo tests + bench gate + optimizer gates + Python wrapper).
