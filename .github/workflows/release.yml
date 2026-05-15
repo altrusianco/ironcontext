@@ -97,7 +97,6 @@ jobs:
     name: Publish to crates.io
     needs: verify
     runs-on: ubuntu-latest
-    environment: release
     steps:
       - uses: actions/checkout@v4
       - name: Install Rust (stable)
@@ -161,7 +160,6 @@ jobs:
     name: Publish to PyPI
     needs: verify
     runs-on: ubuntu-latest
-    environment: release
     permissions:
       id-token: write   # required for PyPI trusted publishing (OIDC)
       contents: read
